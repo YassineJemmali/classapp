@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Profile from "./Components/Profile";
+import Timer from "./Components/Timer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      fullName: "Yassine Jemmali",
+      show: false,
+    };
+  }
+
+  render() {
+    const showProfile = () => {
+      this.setState({ show: !this.state.show });
+    };
+    return (
+      <div>
+        <h1>Mon Nom est {this.state.fullName} </h1>
+        <button onClick={showProfile}>
+          {this.state.show ? "Cacher" : "Afficher"}{" "}
+        </button>
+        {this.state.show && <Profile />}
+        <Timer />
+      </div>
+    );
+  }
 }
 
 export default App;
